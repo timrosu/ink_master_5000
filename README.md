@@ -1,7 +1,15 @@
 # ink_master_5000
  simple script that informs you about remaining ink supply 
  # How does it work?
- It runs ipp script with `ipptool` and returns formatted list in this form: `Black Ink Cartidge: 69%`.
+ It runs ipp script with `ipptool` and returns formatted list.
+ 
+ Output:
+ ```
+ Black Ink Cartridge: 4%
+ Yellow Ink Cartridge: 98%
+ Cyan Ink Cartridge: 6%
+ Magenta Ink Cartridge: 46%
+ ```
  # Requirements
  - python
  - ipptool
