@@ -1,3 +1,4 @@
+#!env python
 import subprocess
 import json
 import xdg.BaseDirectory
