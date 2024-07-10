@@ -15,4 +15,5 @@
  - ipptool
  - POSIX compliant system (for saving entered preferences)
 # Usage
-Copy/download `printscript.py` file and run it with `python printscript.py`. To register new printer delete `$XDG_CONFIG_HOME/inkscript` directory.
+Copy/download `printscript.py` file and run it with `./printscript.py`.  You can also link it or put it into `~/.local/bin` dir for quicker access.
+To register new printer delete `$XDG_CONFIG_HOME/inkscript` directory and run script again.
