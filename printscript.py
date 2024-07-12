@@ -1,8 +1,8 @@
 #!env python
 import subprocess
 import json
-import xdg.BaseDirectory
 from pathlib import Path
+import xdg.BaseDirectory
 
 # requirements:
 # - ipptool
@@ -10,6 +10,7 @@ from pathlib import Path
 
 
 def main():
+    """main function"""
     confdir = Path(f"{xdg.BaseDirectory.xdg_config_home}/inkscript")
     confdir.mkdir(parents=True, exist_ok=True)
     ipp_conf_dir = setup_ipp(confdir)
@@ -19,6 +20,7 @@ def main():
 
 
 def setup_ipp(confdir: Path):
+    """checks for ipp conf file and returns its contents"""
     ipp_conf = Path(confdir / "colors.ipp")
     if not ipp_conf.exists():
         ipp_conf.touch()
@@ -28,18 +30,20 @@ def setup_ipp(confdir: Path):
 
 
 def setup_printer(confdir: Path):
+    """checks for printer conf and returns its contents"""
     printer_conf = Path(confdir / "printer.conf")
     if not printer_conf.exists():
         printer = str(input("Enter printer network address: "))
-        printer_conf.write_text(printer)
-    return printer_conf.read_text()
+        printer_conf.write_text(printer, encoding="utf-8")
+    return printer_conf.read_text(encoding="utf-8")
 
 
 def ink_info(ipp_conf: Path, printer):
+    """prints cartidge consumption percentage acquired from ipptool program"""
     command = ["ipptool", "-v", "-t", "-j", f"ipp://{printer}", ipp_conf]
     try:
         result = subprocess.run(
-            command, stdout=subprocess.PIPE, stderr=subprocess.STDOUT
+            command, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, check=True
         )
         decoded_output = result.stdout.decode("utf-8")
 
@@ -62,6 +66,7 @@ def ink_info(ipp_conf: Path, printer):
 
 
 def get_ipp_conf():
+    """returns ipp script"""
     ipp_content = """
 {
     VERSION 2.0
