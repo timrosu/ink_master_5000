@@ -1,7 +1,10 @@
 #!env python
-import subprocess
+"""ink_master_5000: simple script that informs you about remaining ink supply"""
+
 import json
+import subprocess
 from pathlib import Path
+
 import xdg.BaseDirectory
 
 # requirements:
