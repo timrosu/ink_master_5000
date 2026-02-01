@@ -5,7 +5,7 @@ import json
 import subprocess
 from pathlib import Path
 
-import xdg.BaseDirectory
+from xdg.BaseDirectory import xdg_config_home as xdghomeconfdir
 
 # requirements:
 # - ipptool
@@ -14,7 +14,7 @@ import xdg.BaseDirectory
 
 def main():
     """main function"""
-    confdir = Path(f"{xdg.BaseDirectory.xdg_config_home}/inkscript")
+    confdir = Path(xdghomeconfdir+"/inkmaster")
     confdir.mkdir(parents=True, exist_ok=True)
     ipp_conf_dir = setup_ipp(confdir)
     printer = setup_printer(confdir)
