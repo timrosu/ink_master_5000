@@ -43,7 +43,7 @@ def setup_printer(confdir: Path):
 
 def ink_info(ipp_conf: Path, printer):
     """prints cartidge consumption percentage acquired from ipptool program"""
-    command = ["ipptool", "-v", "-t", "-j", f"ipp://{printer}", ipp_conf]
+    command = ["ipptool", "-v", "-t", "-j", f"ipp://{printer.strip()}", str(ipp_conf.absolute())]
     try:
         result = subprocess.run(
             command, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, check=True
@@ -64,7 +64,7 @@ def ink_info(ipp_conf: Path, printer):
     except subprocess.CalledProcessError as e:
         print(
             f"Command failed with exit code {
-                e.returncode}, stderr: {e.stderr.decode('utf-8')}"
+                e.returncode}, stderr: {e}"
         )
 
 
