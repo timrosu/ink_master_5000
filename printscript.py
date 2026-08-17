@@ -1,4 +1,4 @@
-#!env python
+#!/bin/env python
 """ink_master_5000: simple script that informs you about remaining ink supply"""
 
 import json
